@@ -1,0 +1,10 @@
+config = {
+  "default" => "localhost:6379",
+  "a_queue_of_write_heavy_stuff" => "otherbox:6379"
+}
+
+Resque.redis = Resque::RedisComposite.new(config)
+Resque.push("email_sending", "to" => "dave@example.com") # to localhost:6379
+Resque.push("a_queue_of_write_heavy_stuff", 23239430449) # to otherbox:6379
+
+# Get it?
