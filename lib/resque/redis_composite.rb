@@ -70,7 +70,9 @@ module Resque
     end
   
     def server(queue)
-      queue_name = queue.to_s.sub(/^queue:/, "")
+      # queue_name = queue.to_s.sub(/^queue:/, "")
+      # queue parsing : not match regular expression 
+      queue_name = queue.to_s.sub(/[\W\w]*queue:/,"")
       @mapping[queue_name] || default_server
     end
     
